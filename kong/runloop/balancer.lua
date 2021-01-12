@@ -814,7 +814,7 @@ local function update_balancer_state(premature)
       if updated_upstreams_dict ~= nil then
         local _, err = singletons.core_cache:set("balancer:upstreams", { neg_ttl = 10 }, updated_upstreams_dict)
         if err then
-            log(CRIT, "failed setting list of upstreams: ", err)
+          log(CRIT, "failed setting list of upstreams: ", err)
         else
           set_worker_state_updated()
         end
@@ -911,14 +911,14 @@ local function do_upstream_event(operation, upstream_id, upstream_name)
 
         upstream_db, err = load_upstream_into_memory(upstream_id)
         if err then 
-            log(ERR, "failed to query db by load_upstream_into_memory!", err) 
-            return
+          log(ERR, "failed to query db by load_upstream_into_memory!", err) 
+          return
         end  
 
         local _, err = singletons.core_cache:set(upstream_cache_key, nil, upstream_db)
         if err then 
-            log(ERR, "failed to set core cache!", err) 
-            return
+          log(ERR, "failed to set core cache!", err) 
+          return
         end  
       else
         singletons.core_cache:invalidate_local("balancer:upstreams")
