@@ -911,13 +911,13 @@ local function do_upstream_event(operation, upstream_id, upstream_name)
 
         upstream_db, err = load_upstream_into_memory(upstream_id)
         if err then 
-          log(ERR, "failed to query db by load_upstream_into_memory!", err) 
+          log(ERR, "failed to load upstream from db: ", err)
           return
         end  
 
         local _, err = singletons.core_cache:set(upstream_cache_key, nil, upstream_db)
         if err then 
-          log(ERR, "failed to set core cache!", err) 
+          log(ERR, "failed to set upstream in core cache", err)
           return
         end  
       else
